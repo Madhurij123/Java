@@ -1,27 +1,21 @@
-import java.util.*;
-public class Program2
+class Super
 {
-	public static void main(String[] args)
+	protected Number calculate(Integer i ,Float f )
 	{
-		double a;
-		double b;
-		
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Enter a First Number:");
-		if(!sc.hasNextDouble()) {
-			System.out.println("First Number is Not Double");
-		}
-		a = sc.nextDouble();
-		
-		System.out.println("Enter a Second Number:");
-		if(!sc.hasNextDouble()) {
-			System.out.println("Second Number is Not Double");
-		}
-		b = sc.nextDouble();
-		
-		double avarage = (a + b) / 2;
-		System.out.println("Avarage :" +avarage);
-		
+		return 0;
 	}
+}
+class  Sub extends Super
+{
+	public Number calculate(Integer i, Float f)  ///Return type give subclass ssame or wider than super class
+	{
+		return 0 ;
+	}
+}
+public class Program2 {
+public static void main(String[] args)
+{
+	Sub s = new Sub();
+	s.calculate(1,2.0f);
+}
 }

@@ -1,21 +1,33 @@
+package com.dkte;
 
+
+//Why the return type is not considered in mEthod overloading
 public class Program {
 	
-public static void main(String[] args)
-{
-	int n = 5;
-	
-	for(int i = 5 ; i >= 1; i--)
+	public static int add(int a, int b)
 	{
-		for(int j = 1 ; j <= n - i; j++)
-		{
-			System.out.print(" ");
-		}
-		for(int  j = 1 ; j <= 2 * i - 1 ; j++)
-		{
-			System.out.print("*");
-		}
-		System.out.println();
+		int res = a + b;
+		return res;
 	}
- }
+	public static double add(int a, int b)
+	{
+		double res = (double) a + b;
+		return res;
+	}
+	
+	public static void main(String[] args)
+	{
+		int obj = Program.add(10, 200);
+		System.out.println(obj);
+		
+		double r = Program.add(10, 20);
+		System.out.println(r);
+		
+		
+		Program.add(10, 40);  //Not return output...occurs ambiguity.
+	}
+	
+	
+	
+
 }
