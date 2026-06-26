@@ -1,56 +1,152 @@
-class Person
+package clg.dkte;
+import java.util.*;
+
+class Shape2
 {
-	private String name;
-	private int age;
+	protected float area;
 	
-	public Person()
+	public Shape2()
 	{
-		System.out.println("public Person()");
-	}
-	public Person(String name, int age)
-	{
-		this.name = name;
-		this.age = age;
-	}
-	public void display()
-	{
-		System.out.printf("Name:%s\nAge:%d\n", name,age);
-	}
-}
-class Employee1 extends Person
-{
-	//private String name;
-	//private int age;
-	private int id;
-	private double salary;
-	
-	public Employee1()
-	{
-		System.out.println("public Employee()");
-	}
-	public Employee1(String name, int age, int id, double salary)
-	{
-		//this.name = name;
-		//this.age = age;
-		super(name, age)
-		this.id = id;
-		this.salary = salary;
-	}
-	public void display()
-	{
-		super.display();
-     System.out.println("\nId:"+id+"\nSalary"+salary);
+		System.out.println("public Shape()");
 	}
 	
-}
-public class Program1 {
-	public static void main(String[] args)
+	public void setArea(float area)
 	{
-		//Person p = new Person();
-		//p.display();
+		this.area = area;
+	}
+	public float getArea() {
+		return area;
+	}
+	public void calculateRecord()
+	{
 		
-		Employee1 e = new Employee1();
-		e.display();
+	}
+	
+}
+
+class Rectangle2 extends Shape2
+{
+	private int length;
+	private int breadth;
+	
+	public int getLength() {
+		return length;
 	}
 
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public int getBreadth() {
+		return breadth;
+	}
+
+	public void setBreadth(int breadth) {
+		this.breadth = breadth;
+	}
+
+	@Override
+	public void calculateRecord()
+	{
+		this.area = this.length * this.breadth;
+	}
+}
+class Circle2 extends Shape2
+{
+	private int radius;
+	
+	public void calculateRecord()
+	{
+		area = (float) (Math.PI * radius *radius);
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+}
+public class Program1
+{
+	public static Scanner sc = new Scanner(System.in);
+
+	public static int menuList()
+	{
+		int ch;
+		
+		System.out.println("0.Exit");
+		System.out.println("1.Rectangle");
+		System.out.println("2.Shape");
+
+		System.out.println("Enter a choice:");
+		 ch = sc.nextInt();
+		 return ch;
+	}
+	
+	public static void acceptRecord(Shape2 shape)
+	{
+		if(shape instanceof Rectangle2)
+		{
+			Rectangle2 rect = (Rectangle2) shape;  //Downcasting
+			
+			//int length, bredth;
+			
+			System.out.println("Length:");
+			int lenght = sc.nextInt();  //Callling a class Method need to have 
+		                                    //reference of that class
+			rect.setLength(lenght);
+			
+			System.out.println("Breadth:");
+			int breadth = sc.nextInt();
+			rect.setLength(breadth);
+		}
+		else if(shape instanceof Circle2)
+		{
+			Circle2 cr = (Circle2) shape;
+			
+			System.out.println("Radius");
+			int radius = sc.nextInt();
+			cr.setRadius(radius);
+		}
+		else
+		{
+			System.out.println("Invalid choice..!!");
+		}
+	}
+	public static void printRecord(Shape2 shape)
+	{
+		System.out.println("Area:"+shape.getArea());
+	}
+	public static void main(String[] args)
+	{
+		int ch;
+		
+		while((ch = menuList())!= 0)
+		{
+			Shape2 shape = null;
+			switch(ch)
+			{
+			case 1:
+				shape = new Rectangle2();//upcasting
+				break;
+			case 2:
+				shape = new Circle2(); //upcasting
+				break;
+				
+			default:
+				System.out.println("Inavlid Choice...!!!");
+				continue;
+			}
+		
+		if(shape != null)
+		{
+			Program1.acceptRecord(shape);
+			shape.calculateRecord();
+			Program1.printRecord(shape);
+		}
+		}
+	}
+	
 }

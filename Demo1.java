@@ -1,37 +1,24 @@
-public class Demo1 {
-	public static void main1(String[] args)
+package clg.dkte;
+class Parent
+{
+	public final void display()
 	{
-		short a = 10;  //widening
-				
-		int b = a;
-		
-		System.out.println("B:" +b);
+		System.out.println("Parent Class");
 	}
-	
-	
-	public static void main1(String[] args)
-	{
-		int a = 10; //widening
-		
-		double b = a;
-		
-		System.out.println("B:" +b);
-	}
-	
-	
-	public static void main1(String[] args)
-	{
-		byte a = 10;
-		
-		short b = a;
-		
-		System.out.println("B:" +b);
-	}
-public static void main(String[] args) 
-	    float a = 2;
-		
-		double b = a; 
-		System.out.println(b);
-
 }
+class Child extends Parent
+{
+	/*@Override
+	public  void display()
+	{
+		System.out.println("Child Class");
+	}*/ //Cannot override final method from parent
+}
+public class Demo1 {
+
+	public static void main(String[] args) {
+       Child c = new Child();
+       c.display();
+	}
+
 }
