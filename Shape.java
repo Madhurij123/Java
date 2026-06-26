@@ -1,29 +1,44 @@
-package clg.dkte2;
-
+package clg.dkte;
 import java.util.*;
 
-abstract class Shape1
+class Shape1
 {
 	protected float area;
 	
-	abstract void acceptRecord();
-	abstract void calculateRecord();
-
-
-	public final void show()
-	{
-		System.out.println("Area:"+area);
+	
+	public float getArea() {
+		return area;
 	}
 
 
+	public void setArea(float area) {
+		this.area = area;
+	}
+
+
+	public  void calculateRecord()
+	{
+		
+	}
+
+
+	public void acceptRecord() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void printRecord() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 
-final class Rectangle extends Shape1
+class Rectangle extends Shape1
 {
 	private int length;
 	private int breadth;
-	
 	@Override
 	public void acceptRecord()
 	{
@@ -37,6 +52,7 @@ final class Rectangle extends Shape1
 	public void calculateRecord()
 	{
 		area = this.length * this.breadth;
+		System.out.println("Area:"+area);
 	}
 }
 class Circle extends Shape1
@@ -52,7 +68,7 @@ class Circle extends Shape1
 	public void calculateRecord()
 	{
 		area = (float) (Math.PI * radius *radius);
-		//System.out.println("Area:"+area);
+		System.out.println("Area:"+area);
 
 	}
 }
@@ -97,10 +113,9 @@ public class Shape
 		{
 			shape.acceptRecord();
 			shape.calculateRecord();
-			shape.show();
+			shape.printRecord();
 		}
 		}
 	}
 	
 }
-
