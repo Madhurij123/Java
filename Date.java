@@ -1,18 +1,18 @@
 package clg.dkte;
 
-public class Date extends Object
-{
+
+public class Date extends Object implements Cloneable{
+
 	private int day;
 	private int month;
 	private int year;
 	
 	public Date()
 	{
-		System.out.println("public Date()");
+		System.out.println("Public Date()");
 	}
 
 	public Date(int day, int month, int year) {
-		//super();
 		this.day = day;
 		this.month = month;
 		this.year = year;
@@ -43,8 +43,16 @@ public class Date extends Object
 	}
 	
 	@Override
+	protected Object clone() throws CloneNotSupportedException
+	{
+		Object other = super.clone(); //beacause object class method need to extend and implmlemesnts
+		return other;   
+		
+	}
+	@Override
 	public String toString()
 	{
-		return "\nDay:"+day+"\nMonth:"+month+"\nYear:"+year;
+		return "DAY:"+day+"Month:"+month+"Year:"+year;
 	}
 }
+
