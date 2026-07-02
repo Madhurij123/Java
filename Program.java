@@ -2,14 +2,21 @@ package clg.dkte;
 
 public class Program {
 
-	public static void main(String[] args) throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-      Date dt1 = new Date(10,10,2006);
-      Date dt2 = (Date) dt1.clone();  //used create and copy of object
-      
+	public static void main(String[] args) {
 
-		System.out.println("dt1 : " + dt1.toString());
-		System.out.println("dt2 : " + dt2.toString());
+		Shape[] arr =
+			{
+					new Reactangle(1,2),
+					new Circle(4),
+					new Squre(2)
+			};
+		
+		double total = Shape.cal(arr);
+		System.out.println("Area:"+total);
+		
+		for(int i = 0; i < arr.length; i++)
+		{
+			System.out.println("Peri:"+arr[i].calPeri());
+		}
 	}
-
 }
