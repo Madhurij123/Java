@@ -1,19 +1,16 @@
-package clg.dkte;
 
-public class Employee {
-
-	private int id;
+public class Employee extends Person
+{
+	//private int id;
 	private String name;
-	private String dept;
-	private String job;
 	private double salary;
 	
-	public Employee(int id, String name, String dept, String job, double salary) {
-		super();
-		this.id = id;
+
+
+	public Employee(int id, String name, double salary) {
+		//this.id = id;
+		super(id);
 		this.name = name;
-		this.dept = dept;
-		this.job = job;
 		this.salary = salary;
 	}
 
@@ -24,44 +21,30 @@ public class Employee {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
+	
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-
-	public String getDept() {
-		return dept;
+	public String getName()
+	{
+		return name;
 	}
-
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setSalary(double salary)
+	{
+		this.salary = salary;
 	}
-
-	public String getJob() {
-		return job;
-	}
-
-	public void setJob(String job) {
-		this.job = job;
-	}
-
-	public double getSalary() {
+	public double getSalary()
+	{
 		return salary;
 	}
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
+    @Override
+    public String toString() {
+        return "Employee [id=" + getId() + ", name=" + name + ", salary=" + salary + "]";
+    }
+	
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", dept=" + dept + ", job=" + job + ", salary=" + salary + "]";
-	}
 	
-	
-	
+
 }
