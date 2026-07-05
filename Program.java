@@ -1,42 +1,55 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+
+import java.util.Scanner;
 
 public class Program {
+	public static void delay(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
+		class PrintTable extends Thread {
+			private int num;
 
-        List<Person> list = new ArrayList<>();
+			public PrintTable(int num) {
+				this.num = num;
+			}
 
-        list.add(new Employee(1,"abc",2000));
-        list.add(new Student(4,"xyz",100));
-        list.add(new Employee(3,"abc",2000));
-        list.add(new Student(2, "xyz",100));
-        list.add(new Employee(5,"abc",2000));
-        list.add(new Student(6,"xyz", 100));
-       
-        System.out.println("---------Before Sorting------------:");
-        for (Person p : list) 
-        {
-            System.out.println(p);
-        }
-        System.out.println();
+			@Override
+			public void run() {
+				for (int i = 1; i <= 10; i++) {
+					System.out.printf("%d * %d = %d\n", num, i, num * i);
+					delay(1000);
+				}
+			}
 
-      
-        class PersonIdComparator implements Comparator<Person> {
+		}
+		PrintTable th1 = new PrintTable(2);
+		System.out.println("state : " + th1.getState());
+		th1.setPriority(1);
+		th1.start();
 
-            @Override
-            public int compare(Person x, Person y) {
-                return Integer.compare(x.getId(), y.getId());
-            }
-        }
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ENTER ANY KEY");
+		sc.nextLine();
+		System.out.println("state : " + th1.getState());
 
-        list.sort(new PersonIdComparator());
-        
-        System.out.println("-------------After Sorting--------------:");
-        for (Person p : list) 
-        {
-            System.out.println(p);
-        }
-    }
+		try {
+			th1.join();// calling thread i.e. main will wait for completion given thread i.e. th1
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		th1.start();
+		
+		System.out.println("state : " + th1.getState());
+
+	}
+
 }
