@@ -1,54 +1,13 @@
-class Person
-{
-	private String name;
-	private int age;
-	
-	public Person()
-	{
-		System.out.println("public Person()");
-	}
-	public Person(String name, int age)
-	{
-		this.name = name;
-		this.age = age;
-	}
-	public void display()
-	{
-		System.out.printf("Name:%s\nAge:%d\n", name,age);
-	}
-}
-class Employee
-{
-	private String name;
-	private int age;
-	private int id;
-	private double salary;
-	
-	public Employee()
-	{
-		System.out.println("public Employee()");
-	}
-	public Employee(String name, int age, int id, double salary)
-	{
-		this.name = name;
-		this.age = age;
-		this.id = id;
-		this.salary = salary;
-	}
-	public void display()
-	{
-     System.out.println("\nName:"+name+"\nAge:"+age+"\nId:"+id+"\nSalary"+salary);
-	}
-	
-}
+
 public class Program {
-	public static void main(String[] args)
-	{
-		Person p = new Person();
-		p.display();
+
+	public static void main(String[] args) {
+
+		Box b1 = new Box(1, 2, 3);
+		Box b2 = new Box(3, 2, 3);
 		
-		Employee e = new Employee();
-		e.display();
+		System.out.println(b1.hashCode());
+		System.out.println(b2.hashCode());
 	}
 
 }
