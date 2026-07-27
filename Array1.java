@@ -1,60 +1,47 @@
-package com.dkte;
+package clg.dkte;
+
+import java.util.*;
 
 public class Array1 {
-	
-	
-	//-----------------Variable Arity Method------------------
-	public static void  arraySum(Object... arr) //Intenally this is array of double, all type of data type support
-	{
-		double sum = 0.0;
-		
-		for(int i = 0; i < arr.length; i++)
-		{
-          System.out.println(arr[i]);
-		}
-	}
-
-	public static void main(String[] args)
-	{
-     Array1.arraySum(1.1, 1.2, 1.3, 5,"fgsdaf",12.f); //Variable Arity Method ..there is no need to create array..passing referenence
-	}
-	
-/*	public static double arraySum(double[] arr)
-	{
-		double sum = 0.0;
-		
-		for(int i = 0; i < arr.length; i++)
-		{
-			sum = sum + arr[i];
-		}
-		return sum;
-	}
 
 	public static void main(String[] args) {
-    double[] arr =  {1.1, 1.2, 1.3};
-    double r1 = Array1.arraySum(arr);
-    System.out.println("Result:" +r1);
-    
-	}*/
-	
-	
-	
-	
-	/*public static double arraySum(double... arr) //Intenally this is array of double
-	{
-		double sum = 0.0;
+     
+		//int[] arr  = new int[] {10,20,30};
 		
-		for(int i = 0; i < arr.length; i++)
+		
+		int[] arr = new int[3];
+		
+		Scanner sc = new Scanner(System.in);
+		
+		
+		System.out.println("Enter a Array Elemnt");
 		{
-			sum = sum + arr[i];
+			for(int i = 0; i < arr.length; i++)
+			{
+				arr[i] = sc.nextInt();
+			}
+		}
+		
+		System.out.println("Array Elements are:");
+		{
+			for(int i = 0; i < arr.length ; i++)
+			{
+				System.out.println(arr[i]);
+			}
+		}
+		int total = Array1.arraySum(arr);
+		System.out.print("Sum of  Array Elemments:" +total);
+		
+	}
+	
+	public static int arraySum(int[] arr)
+	{
+		int sum =0;
+		for(int i = 0 ; i < 3; i++)
+		{
+		   sum += arr[i];
 		}
 		return sum;
 	}
 
-	public static void main(String[] args)
-	{
-    double r1 = Array1.arraySum(1.1, 1.2, 1.3, 5); //Variable Arity Method ..there is no need to create array..passing referenence
-    System.out.println("Result:" +r1);
-}*/
-	
 }
