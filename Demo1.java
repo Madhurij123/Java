@@ -1,15 +1,37 @@
-interface B
-{
-	public int add(int i,int j);
-}
 public class Demo1 {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-      B b =(i,j) -> i + j;
-      
-      int res = b.add(5, 3);
-      System.out.println(res);
+	public static void main1(String[] args)
+	{
+		short a = 10;  //widening
+				
+		int b = a;
+		
+		System.out.println("B:" +b);
 	}
+	
+	
+	public static void main1(String[] args)
+	{
+		int a = 10; //widening
+		
+		double b = a;
+		
+		System.out.println("B:" +b);
+	}
+	
+	
+	public static void main1(String[] args)
+	{
+		byte a = 10;
+		
+		short b = a;
+		
+		System.out.println("B:" +b);
+	}
+public static void main(String[] args) 
+	    float a = 2;
+		
+		double b = a; 
+		System.out.println(b);
 
+}
 }
