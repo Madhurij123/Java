@@ -1,144 +1,77 @@
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Program1 {
 
-	public static void main1(String[] args) {
-
-		Account acc = new Account(1, "Saving", 1000.00);
-		
-		//1.extends Thread class & run() method
-		class DepositThread extends Thread
-		{
-			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				acc.deposit(100);
-				System.out.println("Baance After Deposit:"+acc.getBalance());
-			}
-		}
-	}
-		DepositThread th1 = new DepositThread();
-		th1.start();
-		
-		class WithdrawThread extends Thread
-		{
-			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				acc.withdraw(100);
-				System.out.println("Baance After Withdraw:"+acc.getBalance());
-			}
-		}
-	}
-		WithdrawThread th2 = new WithdrawThread();
-		th2.start();
-		
-		try {
-			th1.join();
-			th2.join();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		System.out.println("Final Balanace:"+acc.getBalance());
-		
-	}
-	
-	//Avoid Race Condition -when depoit() & withdraw() not return as Synchroized
-	
-	//----------------use Synchroinzed block;-------------------------
-	
-	public static void main2(String[] args) {
-
-		Account acc = new Account(1, "Saving", 1000.00);
-		
-		//1.extends Thread class & run() method
-		class DepositThread extends Thread
-		{
-			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				synchronized (acc) { //lock
-					acc.deposit(100);
-					System.out.println("Baance After Deposit:" + acc.getBalance());
-				}//unclock
-			}
-		}
-	}
-		DepositThread th1 = new DepositThread();
-		th1.start();
-		
-		class WithdrawThread extends Thread
-		{
-			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				synchronized (acc) {
-					acc.withdraw(100);
-					System.out.println("Baance After Withdraw:" + acc.getBalance());
-				}
-			}
-		}
-	}
-		WithdrawThread th2 = new WithdrawThread();
-		th2.start();
-		
-		try {
-			th1.join();
-			th2.join();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		System.out.println("Final Balanace:"+acc.getBalance());
-		
-	}
-	
 	public static void main(String[] args) {
 
-		Account acc = new Account(1, "Saving", 1000.00);
+		//Set<Book> set = new HashSet<>();
+		Set<Book> set = new LinkedHashSet<>();
+		//Set<Book> set = new TreeSet<>();
 		
-		//1.extends Thread class & run() method
-		class DepositThread extends Thread
+		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
+		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
+		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
+		
+		System.out.println("Set:");
+		for(Book b : set)
+		{
+			System.out.println(b);
+		}
+		
+		class BookIdComparator implements Comparator<Book>
 		{
 			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				acc.deposit(100);
-				System.out.println("Baance After Deposit:"+acc.getBalance());
-			}
+			public int compare(Book x, Book y) {
+				int diff = Integer.compare(x.getId(), y.getId());
+				return diff;
+			}	
 		}
-	}
-		DepositThread th1 = new DepositThread();
-		th1.start();
-		
-		class WithdrawThread extends Thread
+		System.out.println("Set:");
+		for(Book b : set)
 		{
-			@Override
-			public void run() {
-			for(int i = 1 ;  i <= 1000; i++)
-			{
-				acc.withdraw(100);
-				System.out.println("Baance After Withdraw:"+acc.getBalance());
-			}
-		}
-	}
-		WithdrawThread th2 = new WithdrawThread();
-		th2.start();
-		
-		try {
-			th1.join();
-			th2.join();
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(b);
 		}
 		
-		System.out.println("Final Balanace:"+acc.getBalance());
-		
-	}
 
+	}
 }
+	
+	/*public static void main(String[] args)
+	{
+		class BookIdComparator implements Comparator<Book>
+		{
+
+			@Override
+			public int compare(Book x, Book y) {
+				int diff = Integer.compare(x.getId(), y.getId());
+				return diff;
+			}	
+		}
+		//Collections.sort(set, new BookIdComparator());
+		Set<Book> set = new TreeSet<>(new BookIdComparator());
+		
+		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
+		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
+		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
+		
+		System.out.println("Set:");
+		for(Book b : set)
+		{
+			System.out.println(b);
+		}
+	}*/
+
+

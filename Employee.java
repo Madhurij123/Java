@@ -1,53 +1,59 @@
-package clg.dkte;
+import javax.print.attribute.standard.MediaSize.Other;
 
-public class Employee {
-	
+public class Employee implements Comparable<Employee>{
 	private int id;
 	private String name;
 	private double salary;
 	
-	
 	public Employee()
 	{
-		this();   ///Constructor Chaining
+		
 	}
 	
-	public Employee(int id , String name, double salary)
-	{
+	public Employee(int id, String name, double salary) {
 		this.id = id;
-		this.name =  name;
+		this.name = name;
 		this.salary = salary;
 	}
-	
-	public void display()
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+
+	public boolean equal(Object obj)
 	{
-		System.out.printf("Id: %d name: %s salary: %.2f\n", id, name, salary);
+		if(this == obj)
+			return true;
+		if(obj == null)
+			return false;
+		if(!(obj instanceof Employee))
+			return false;
+		Employee other = (Employee) obj;
+		return this.id == other.id;
 	}
 
-	public static void main1(String[] args) {
-		
-		Employee[] arr = new Employee[2];
-		
-		arr[0] = new Employee(10,"abc",12000.0);
-		arr[1] = new Employee(20,"xyz",120000.0);
-		
-		for(Employee arr1 : arr )
-		{
-			arr1.display();
-		}
-
+	@Override
+	public int compareTo(Employee o) {
+		int diff = this.id - o.id;
+		return diff;
 	}
-
 	
-	public static void main(String[] args)
-	{
-		Employee arr[] = null;
-		arr = new Employee[2];
-		
-		System.out.println(arr[0]);
-		System.out.println(arr[1]);
-
-		
-		//arr[0].display();    ///Throw NullPointerException
-	}
 }

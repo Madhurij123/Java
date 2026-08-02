@@ -1,68 +1,85 @@
-import java.util.Scanner;
+import java.util.Objects;
 
-public class Book implements Comparable<Book> {
+public class Book implements Comparable<Book>{
+
 	private int id;
-	private int quantity;
-	private String authorName;
+	private String name;
+	private String subject;
 	private double price;
 	
 	public Book()
 	{
 		
 	}
-	public Book(int id, int quantity, String authorName, double price) {
+
+	public Book(int id, String name, String subject, double price) {
 		super();
 		this.id = id;
-		this.quantity = quantity;
-		this.authorName = authorName;
+		this.name = name;
+		this.subject = subject;
 		this.price = price;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getQuantity() {
-		return quantity;
+
+	public String getName() {
+		return name;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getAuthorName() {
-		return authorName;
+
+	public String getSubject() {
+		return subject;
 	}
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public  void accept()
+	
+	@Override
+    public int hashCode()
+    {
+		return Objects.hash(id);
+    }
+
+	@Override
+	public boolean equals(Object obj)
 	{
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a book id");
-		id = sc.nextInt();
-		System.out.println("Enter a quantity:");
-		quantity = sc.nextInt();
-		System.out.println("Enter a Author name:");
-		authorName = sc.next();
-		System.out.println("Enter a Price:");
-		price = sc.nextDouble();
+		if(this == obj)
+			return true;
+		if(obj == null)
+			return false;
+		if(!(obj instanceof Book))
+			return true;
+		Book other = (Book) obj;
+		return this.id == other.id;
 	}
+	
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", quantity=" + quantity + ", authorName=" + authorName + ", price=" + price + "]";
+		return "Book [id=" + id + ", name=" + name + ", subject=" + subject + ", price=" + price + "]";
 	}
+
 	@Override
 	public int compareTo(Book other) {
-		int diff = (int) (other.price - this.price);
+		int diff = this.id - other.id;
 		return diff;
 	}
 	
-	
-
 }
