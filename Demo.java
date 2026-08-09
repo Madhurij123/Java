@@ -1,24 +1,17 @@
-@FunctionalInterface
-interface A
-{
-	void show();
-}
+package day1;
+
 public class Demo {
 
 	public static void main(String[] args) {
 
-		/*A obj = new A()
-				{
-		          	public void show() {
-		          		System.out.println("Show() method");
-		          	}
-				};
-				obj.show();*/
+		int a = 10;  //without initialization - ---complie time error
+		a++;
+		//++a;
+		System.out.println(a);
 		
-		//Lambda Excpression
-		A obj = ()-> System.out.println("Show() method");  //Single line not need of curly braces
-       
-		obj.show();
+		Object o = null;  //allow
+		o.toString(); //runtime error
+		
 	}
 
 }
