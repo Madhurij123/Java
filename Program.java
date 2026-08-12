@@ -1,106 +1,70 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+package clg.dkte;
+
 import java.util.Scanner;
 
 public class Program {
-	
-	public static int menuList()
-	{
-		int ch;
-		System.out.println("0.Exit");
-		System.out.println("1.Add New Book In list");
-		System.out.println("2.Display all BOOK in Forward Order");
-		System.out.println("3.Display all BOOK in Revers Order");
-		System.out.println("4.Delete a Book at given index");
-		System.out.println("5.Sort all book by Price in desending order");
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Choice:");
-		ch = sc.nextInt();
-		return ch;
 
-	}
+    public static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+    public static int menuList() {
+        System.out.println("\n0. Exit");
+        System.out.println("1. Add Books");
+        System.out.println("2. Find Book By Id");
+        System.out.println("3. Find Books By Publish Year");
+        System.out.println("4. Display All Books");
+        System.out.print("Enter Choice : ");
 
-		//Book[]  b = new Book[5];
-		
-	    List<Book> list = new ArrayList<Book>();
-		
-		Scanner sc = new Scanner(System.in);
-		
-		int ch;
-		int count = 0;
-		
-		while((ch = menuList())!= 0)
-		{
-			switch(ch)
-			{
-			case 1:
-				System.out.println("--------Book Management System---------------------");
-				System.out.print("Enter a No.of Books want to add:");
-				int n = sc.nextInt();
-				System.out.println("---------------------------------------------------");
-				for(int i = 0; i < n; i++)
-				{
-					Book b = new Book();
-					b.accept();
-					list.add(b);
-					System.out.println("New Book Added Successfully..!!");
-					System.out.println("---------------------------------------------------");
+        return sc.nextInt();
+    }
 
-				}
-				break;
-				
-			case 2:
-				Iterator<Book> trav = list.iterator();
-				while(trav.hasNext())
-				{
-					Book e = trav.next();
-					System.out.println(e);
-					System.out.println("---------------------------------------------------");
-				}
-				System.out.println();
-				break;
-				
-			case 3:
-				ListIterator<Book> trav1 = list.listIterator(list.size());
+    public static void main(String[] args) {
 
-			    while (trav1.hasPrevious()) {
-			        Book b = trav1.previous();
-			        System.out.println(b);
-					System.out.println("---------------------------------------------------");
-			    }
-			    System.out.println();
-			    break;
-			    
-			case 4:
-				System.out.println("Enter Id WANT TO Delete:");
-				int key = sc.nextInt();
-				list.remove(key);
-				System.out.println("Book Deleted Succsfully..!!");
-				break;
-				
-			case 5:
-				Collections.sort(list);
-				for(Book bk : list)
-				{
-					System.out.println(bk);
-					System.out.println("---------------------------------------------------");
-				}
-				break;
-				
-			default:
-				System.out.println("Invalid Choice...!!");
-				
-			}
-		}
-		
-		
-	}
+        Book[] books = new Book[2];
 
+        int ch;
+
+        while ((ch = menuList()) != 0) {
+
+            switch (ch) {
+
+            case 1:
+                for (int i = 0; i < books.length; i++) {
+                    books[i] = new Book();
+                    books[i].acceptRecord();
+                }
+                break;
+
+            case 2:
+                System.out.print("Enter Book Id : ");
+                int id = sc.nextInt();
+
+                for (int i = 0; i < books.length; i++) {
+                    if (books[i].getBookId() == id) {
+                        books[i].display();
+                    }
+                }
+                break;
+
+            case 3:
+                System.out.print("Enter Publish Year : ");
+                int y = sc.nextInt();
+                for (int i = 0; i < books.length; i++)
+                if (books[i] != null && books[i].getYear() == y)
+                {
+                    books[i].display();
+                }
+                break;
+
+            case 4:
+                for (int i = 0; i < books.length; i++)
+                {
+                        books[i].display();
+                                  }
+                break;
+
+            default:
+                System.out.println("Invalid Choice");
+            }
+        }
+    }
 }
