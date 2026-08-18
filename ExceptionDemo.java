@@ -1,25 +1,19 @@
-import java.rmi.AccessException;
+import java.io.IOException;
 
 public class ExceptionDemo {
+
 	public static void main(String[] args) {
-		
-		int i = 20;
-		int j = 0;
-		
-		int[] arr = new int[5];
+		// TODO Auto-generated method stub
+		int num = 0;
+		System.out.println("Enter a number:");
 		try {
-			j = 6 / 3;
-			System.out.println(arr[5]);
-			if(j == 0)
-				throw new ArithmeticException();
-			
-		}catch(ArithmeticException e) {
-			System.out.println("Cannot divide by zero" +e);
-		}
-		catch(ArrayIndexOutOfBoundsException a) {
-			System.out.println("Stay with limit");
+			 num = System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		System.out.println(j);
+		System.out.println(num - 48);
 	}
+
 }
