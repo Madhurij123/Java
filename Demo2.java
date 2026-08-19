@@ -1,28 +1,30 @@
-package clg.dkte;
-//If we class as final we cannot inherits this class
-//making class final by defualt all method of that class become final
-final class Super
+package generic;
+
+//Bounded Generic Type ------------------Number or its Sub Class
+class Squre <T extends Number>
 {
-	public void display()
-	{
-		System.out.println("Parent Class");
+	private T obj;
+	public void set(T obj) {
+		this.obj = obj;
 	}
-}
-/*class Sub extends Super
-{
-	@Override
-	public void display()
+	public T get()
 	{
-		System.out.println("Child Class");
+		return this.obj;
 	}
+	
 }
 public class Demo2 {
 
 	public static void main(String[] args) {
-       Sub c = new Sub();
-       c.display();
+	
+		Squre<Number> b1 = new Squre<Number>();  //Okay
+		
+		//Box<Boolean> b1 = new Box<Boolean>(); //Error
+		b1.set(101);
+		b1.get();
+		System.out.println(b1);
+
 	}
 
-}*/
-
-
+}
+ 
