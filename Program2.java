@@ -1,21 +1,17 @@
-class Super
-{
-	protected Number calculate(Integer i ,Float f )
-	{
-		return 0;
-	}
-}
-class  Sub extends Super
-{
-	public Number calculate(Integer i, Float f)  ///Return type give subclass ssame or wider than super class
-	{
-		return 0 ;
-	}
-}
+package clg.dkte2;
+
 public class Program2 {
-public static void main(String[] args)
-{
-	Sub s = new Sub();
-	s.calculate(1,2.0f);
-}
+
+	public static void main(String[] args) {
+
+		Employee e1 = new Employee(101, "Nita", 1000.00);
+		Employee e2 = new Employee(101, "Nita", 1000.00);
+
+		//boolean res =(e1 == e2); //It comapre references that not same
+		//System.out.println(res);
+		
+		boolean res = e1.equals(e2); //Object class equcals method also compare a reefernecs
+		System.out.println(res);
+	}
+
 }
