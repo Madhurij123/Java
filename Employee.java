@@ -1,18 +1,15 @@
-package clg.dkte2;
 
-public class Employee {
-
-	private int id;
+public class Employee extends Person
+{
+	//private int id;
 	private String name;
 	private double salary;
 	
-	public Employee()
-	{
-		
-	}
+
 
 	public Employee(int id, String name, double salary) {
-		this.id = id;
+		//this.id = id;
+		super(id);
 		this.name = name;
 		this.salary = salary;
 	}
@@ -24,33 +21,30 @@ public class Employee {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
+	
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-
-	public double getSalary() {
+	public String getName()
+	{
+		return name;
+	}
+	public void setSalary(double salary)
+	{
+		this.salary = salary;
+	}
+	public double getSalary()
+	{
 		return salary;
 	}
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-	@Override
-	public boolean equals(Object obj)
-	{
-		Employee other = (Employee) obj; //Downcatsing is mandatory
-		if(this.id == other.id)  //e1.equcals(e2);
-			return true;
-		return false;
-	}
-	@Override
-	public String toString()
-	{
-		return "Employee [empid=" + id + ", name=" + name + ", salary=" + salary + "]";
-	}
+    @Override
+    public String toString() {
+        return "Employee [id=" + getId() + ", name=" + name + ", salary=" + salary + "]";
+    }
+	
+
+	
+
 }
