@@ -1,42 +1,47 @@
-import java.util.ArrayList;
+package multilevel.sorting;
+
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public class Program {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
+		
+		Employee[] arr =
+			{
+					new Employee(3, "S", "Clerk", "Prod", 645.3),
+					new Employee(5, "H", "Manager", "Prod", 723.2),
+					new Employee(2, "B", "Salesman", "Sales", 752.2),
+					new Employee(1, "A", "Manager", "Sales", 235.3),
+					new Employee(8, "X", "Clerk", "Prod", 923.3),
+					new Employee(7, "P", "Clerk", "Sales", 623.5),
+					new Employee(6, "G", "Salesman", "Sales", 402.2)	
+			};
+		
+		class EmpDeptComparator implements Comparator<Employee>
+		{
 
-        List<Person> list = new ArrayList<>();
+			// compare emps by dept in asc order (1st level)
+			@Override
+			public int compare(Employee x, Employee y) {
+				int diff = x.getDept().compareTo(y.getDept());
+				//job in asc order (2nd level)
+				if(diff == 0)
+					diff = x.getJob().compareTo(y.getJob());
+				//sal in desc order (3rd level)
+				if(diff == 0)
+					diff = - Double.compare(x.getSal(), y.getSal());
+				return diff;
+			}
+			
+		}
+		Arrays.sort(arr,new EmpDeptComparator());
+		
+		for(Employee e: arr)
+		{
+			System.out.println(e);
+		}
 
-        list.add(new Employee(1,"abc",2000));
-        list.add(new Student(4,"xyz",100));
-        list.add(new Employee(3,"abc",2000));
-        list.add(new Student(2, "xyz",100));
-        list.add(new Employee(5,"abc",2000));
-        list.add(new Student(6,"xyz", 100));
-       
-        System.out.println("---------Before Sorting------------:");
-        for (Person p : list) 
-        {
-            System.out.println(p);
-        }
-        System.out.println();
+	}
 
-      
-        class PersonIdComparator implements Comparator<Person> {
-
-            @Override
-            public int compare(Person x, Person y) {
-                return Integer.compare(x.getId(), y.getId());
-            }
-        }
-
-        list.sort(new PersonIdComparator());
-        
-        System.out.println("-------------After Sorting--------------:");
-        for (Person p : list) 
-        {
-            System.out.println(p);
-        }
-    }
 }
