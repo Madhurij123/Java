@@ -1,47 +1,74 @@
-package multilevel.sorting;
-
-import java.util.Arrays;
-import java.util.Comparator;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
-		Employee[] arr =
-			{
-					new Employee(3, "S", "Clerk", "Prod", 645.3),
-					new Employee(5, "H", "Manager", "Prod", 723.2),
-					new Employee(2, "B", "Salesman", "Sales", 752.2),
-					new Employee(1, "A", "Manager", "Sales", 235.3),
-					new Employee(8, "X", "Clerk", "Prod", 923.3),
-					new Employee(7, "P", "Clerk", "Sales", 623.5),
-					new Employee(6, "G", "Salesman", "Sales", 402.2)	
-			};
+		//writeVechicles();
+		readVehicles();
+	}
+    
+	public static void writeVechicles()
+	{
+		List<Vehicle> list = new ArrayList<>();
+		   list.add(new Vehicle(101, "abc", "agfs", 10000));
+		    list.add(new Vehicle(102, "ahdfc", "afgs", -20000));
+		    list.add(new Vehicle(103, "abdfh", "fags", 30000));
+		    list.add(new Vehicle(104, "abdc", "fags", 40000));
+		    list.add(new Vehicle(105, "abff", "hfdags", 50000));
 		
-		class EmpDeptComparator implements Comparator<Employee>
-		{
-
-			// compare emps by dept in asc order (1st level)
-			@Override
-			public int compare(Employee x, Employee y) {
-				int diff = x.getDept().compareTo(y.getDept());
-				//job in asc order (2nd level)
-				if(diff == 0)
-					diff = x.getJob().compareTo(y.getJob());
-				//sal in desc order (3rd level)
-				if(diff == 0)
-					diff = - Double.compare(x.getSal(), y.getSal());
-				return diff;
+		try(FileOutputStream fout = new FileOutputStream("Vehicle.db")){
+			try(DataOutputStream dout = new DataOutputStream(fout)){
+				
+                      dout.writeInt(list.size());
+                      
+				for(Vehicle v : list) {
+					if(v.getPrice() > 0) {
+						dout.writeInt(v.getVechicleId());
+						dout.writeUTF(v.getModel());
+						dout.writeUTF(v.getType());
+						dout.writeDouble(v.getPrice());
+					}
+					else {
+						System.out.println("Invalid Price..!!" +v.getModel());
+					}
+				}
 			}
+			System.out.println("Vechicles Added Successfully..!!");
+		}catch(Exception e) {
+			e.printStackTrace();
 			
 		}
-		Arrays.sort(arr,new EmpDeptComparator());
-		
-		for(Employee e: arr)
-		{
-			System.out.println(e);
-		}
-
 	}
 
+public static void readVehicles() {
+    List<Vehicle> list = new ArrayList<>();
+
+    try (FileInputStream fin = new FileInputStream("Vehicle.db");
+         DataInputStream din = new DataInputStream(fin)) {
+
+    	int count = din.readInt();   //take count variable
+
+    	for (int i = 0; i < count; i++) {  //use for loop
+    	    Vehicle v = new Vehicle();
+
+    	    v.setVechicleId(din.readInt());
+    	    v.setModel(din.readUTF());
+    	    v.setType(din.readUTF());
+    	    v.setPrice(din.readDouble());
+
+    	    list.add(v);
+    	}
+    } catch (Exception e) {
+    } 
+
+    System.out.println("Vehicles:");
+    list.forEach(System.out::println);
+}
+	
 }
