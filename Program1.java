@@ -1,77 +1,47 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
+//Comparable is standard used to comparing this  with other object
+
+  ////-------------------------Using Object Class--------------
+  
+class Fraction1 implements Comparable
+{
+	private int n;
+	private int d;
+	
+	public Fraction1(int n, int d)
+	{
+		this.n = n;
+		this.d = d;
+	}
+
+	public double values()
+	{
+		double res = (double) n / d;
+		return res;
+	}
+	@Override                   //Passes Object class
+	public int compareTo(Object obj) {   //-----compareTo----used return differnce 
+		Fraction1 other = (Fraction1) obj;  //Downcasting is manadatory         //between this and other
+		if(this.values() == other.values())
+			return 0;
+		if(this.values() > other.values())
+			return 1;
+		else
+			return -1;	
+	}
+	
+	
+}
 
 public class Program1 {
 
 	public static void main(String[] args) {
 
-		//Set<Book> set = new HashSet<>();
-		Set<Book> set = new LinkedHashSet<>();
-		//Set<Book> set = new TreeSet<>();
+		Fraction1 f1 = new Fraction1(20,10); //1
+		Fraction1 f2 = new Fraction1(20,20); //2
 		
-		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
-		set.add(new Book(1, "The Archer", "Novel", 723.53));
-		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
-		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
-		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
-		set.add(new Book(1, "The Archer", "Novel", 723.53));
-		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
-		
-		System.out.println("Set:");
-		for(Book b : set)
-		{
-			System.out.println(b);
-		}
-		
-		class BookIdComparator implements Comparator<Book>
-		{
-			@Override
-			public int compare(Book x, Book y) {
-				int diff = Integer.compare(x.getId(), y.getId());
-				return diff;
-			}	
-		}
-		System.out.println("Set:");
-		for(Book b : set)
-		{
-			System.out.println(b);
-		}
-		
+		int res = f1.compareTo(f2);
+		System.out.println(res);
 
 	}
+
 }
-	
-	/*public static void main(String[] args)
-	{
-		class BookIdComparator implements Comparator<Book>
-		{
-
-			@Override
-			public int compare(Book x, Book y) {
-				int diff = Integer.compare(x.getId(), y.getId());
-				return diff;
-			}	
-		}
-		//Collections.sort(set, new BookIdComparator());
-		Set<Book> set = new TreeSet<>(new BookIdComparator());
-		
-		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
-		set.add(new Book(1, "The Archer", "Novel", 723.53));
-		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
-		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
-		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
-		set.add(new Book(1, "The Archer", "Novel", 723.53));
-		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
-		
-		System.out.println("Set:");
-		for(Book b : set)
-		{
-			System.out.println(b);
-		}
-	}*/
-
-

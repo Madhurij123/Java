@@ -1,49 +1,46 @@
-class A
+class Fraction3 implements Comparable<Fraction3>
 {
-	public void showRecord()
-	{
-		System.out.println("A.showRecord()");
-	}
-	public void printRecord()
-	{
-		System.out.println("A.printRecord()");
-	}
-}
-class B extends A
-{
-	public void printRecord()
-	{
-		System.out.println("B.printRecord()");
-	}
-	public void displayRecord()
-	{
-		System.out.println("B.displayRecord()");
-	}
-}
-public class Program3 {
+	private int n;
+	private int d;
 	
+	public Fraction3(int n, int d)
+	{
+		this.n = n;
+		this.d = d;
+	}
+	public double values()
+	{
+		double res = (double) n / d;
+		return res;
+	}
+	@Override
+	public int compareTo(Fraction3 other) {
+		if(this.values() == other.values())
+			return 0;
+		if(this.values() > other.values())
+			return 1;
+		else
+			return -1;
+	}
+	/*@Override
+	public int compareTo(Fraction3 other) {
+		int diff = (int) (this.values() - other.values());
+		return diff;
+	}*/
+	/*@Override
+	public int compareTo(Fraction3 other) {
+		int diff = (int) (other.values() - this.values());
+		return diff;
+	}*/
+}
+public class Program3
+{
 	public static void main(String[] args)
 	{
-		A a = new B(); //Upcasting
-		a.showRecord();
-		a.printRecord();  //method same in both classes..so executes sub class method
-		//a.displayRecord();    //Complie tIme Error ---beacuse the displayRecord() not presnt in A
+		Fraction3 a = new Fraction3(20,10); 
+		Fraction3 b = new Fraction3(20,20);
 		
-		
-		B b =(B) a;
-		b.showRecord();   //Not a Mthod B  BUT Extends class A,,,so it is accessible
-		b.printRecord();
-		b.displayRecord();
-		
-		
+		int res = a.compareTo(b);
+		System.out.println(res);
 	}
-	public static void main1(String[] args)
-	{
-		B b = new B();
-		b.displayRecord();
-		b.showRecord();
-		b.printRecord();
-		
-	}
-
 }
