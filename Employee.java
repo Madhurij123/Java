@@ -1,70 +1,49 @@
-package multilevel.sorting;
+package com.dkte;
 
 public class Employee {
-	    private int id;
-	    private String name;
-	    private String job;
-	    private String dept;
-	    private double sal;
-	 
-	    public Employee()
-	    {
-	    	
+	
+		private String firstName;
+	    private String lastName;
+	    private double monthlySalary;
+
+	    public Employee(String firstName, String lastName, double monthlySalary) {
+	        this.firstName = firstName;
+	        this.lastName = lastName;
+
+	        if (monthlySalary > 0) {
+	            this.monthlySalary = monthlySalary;
+	        } else {
+	            this.monthlySalary = 0.0;
+	        }
 	    }
 
-		public Employee(int id, String name, String job, String dept, double sal) {
-			super();
-			this.id = id;
-			this.name = name;
-			this.job = job;
-			this.dept = dept;
-			this.sal = sal;
-		}
+	    public String getFirstName() {
+	        return firstName;
+	    }
 
-		public int getId() {
-			return id;
-		}
+	    public String getLastName() {
+	        return lastName;
+	    }
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	    public double getMonthlySalary() {
+	        return monthlySalary;
+	    }
 
-		public String getName() {
-			return name;
-		}
+	    public void setFirstName(String firstName) {
+	        this.firstName = firstName;
+	    }
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	    public void setLastName(String lastName) {
+	        this.lastName = lastName;
+	    }
 
-		public String getJob() {
-			return job;
-		}
+	    public void setMonthlySalary(double monthlySalary) {
+	        if (monthlySalary > 0) {
+	            this.monthlySalary = monthlySalary;
+	        }
+	    }
+	}
 
-		public void setJob(String job) {
-			this.job = job;
-		}
 
-		public String getDept() {
-			return dept;
-		}
 
-		public void setDept(String dept) {
-			this.dept = dept;
-		}
 
-		public double getSal() {
-			return sal;
-		}
-
-		public void setSal(double sal) {
-			this.sal = sal;
-		}
-
-		@Override
-		public String toString() {
-			return "Employee [id=" + id + ", name=" + name + ", job=" + job + ", dept=" + dept + ", sal=" + sal + "]";
-		}
-	    
-	    
-}
