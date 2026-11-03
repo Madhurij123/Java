@@ -1,17 +1,27 @@
-package clg.dkte2;
-
-public class Program2 {
-
-	public static void main(String[] args) {
-
-		Employee e1 = new Employee(101, "Nita", 1000.00);
-		Employee e2 = new Employee(101, "Nita", 1000.00);
-
-		//boolean res =(e1 == e2); //It comapre references that not same
-		//System.out.println(res);
+import java.util.*;
+public class Program2
+{
+	public static void main(String[] args)
+	{
+		double a;
+		double b;
 		
-		boolean res = e1.equals(e2); //Object class equcals method also compare a reefernecs
-		System.out.println(res);
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter a First Number:");
+		if(!sc.hasNextDouble()) {
+			System.out.println("Error:First Number is Not Double");
+		}
+		a = sc.nextDouble();
+		
+		System.out.println("Enter a Second Number:");
+		if(!sc.hasNextDouble()) {
+			System.out.println("Error:Second Number is Not Double");
+		}
+		b = sc.nextDouble();
+		
+		double avarage = (a + b) / 2;
+		System.out.println("Avarage :" +avarage);
+		
 	}
-
 }
