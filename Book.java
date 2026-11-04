@@ -1,85 +1,68 @@
-package clg.dkte;
-import java.util.*;
-public class Book{
+import java.util.Scanner;
 
-	private int bookId;
-	private String title;
-	private String author;
-	private Date joining;  //Association
+public class Book implements Comparable<Book> {
+	private int id;
+	private int quantity;
+	private String authorName;
+	private double price;
 	
 	public Book()
 	{
-		System.out.println("public Book()");
-		joining = new Date();
-
+		
 	}
-
-	public Book(int bookId, String title, String author, Date joining) {
+	public Book(int id, int quantity, String authorName, double price) {
 		super();
-		this.bookId = bookId;
-		this.title = title;
-		this.author = author;
-		this.joining = joining;
+		this.id = id;
+		this.quantity = quantity;
+		this.authorName = authorName;
+		this.price = price;
 	}
-	
-	
-	public int getBookId() {
-		return bookId;
+	public int getId() {
+		return id;
 	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public String getTitle() {
-		return title;
+	public int getQuantity() {
+		return quantity;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
-
-	public String getAuthor() {
-		return author;
+	public String getAuthorName() {
+		return authorName;
 	}
-
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
 	}
-
-	public Date getJoining() {
-		return joining;
+	public double getPrice() {
+		return price;
 	}
-
-	public void setJoining(Date joining) {
-		this.joining = joining;
+	public void setPrice(double price) {
+		this.price = price;
 	}
-
-	public void acceptRecord()
+	public  void accept()
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a Book id:");
-		bookId = sc.nextInt();
-		System.out.println("Enter a titile:");
-		title = sc.next();
-		
-		System.out.println("Enter a author:");
-		author = sc.next();
-		this.joining.acceptDate();
+		System.out.println("Enter a book id");
+		id = sc.nextInt();
+		System.out.println("Enter a quantity:");
+		quantity = sc.nextInt();
+		System.out.println("Enter a Author name:");
+		authorName = sc.next();
+		System.out.println("Enter a Price:");
+		price = sc.nextDouble();
 	}
-	public void display()
-	{
-		System.out.println("Book Id:"+bookId);
-		System.out.println("Book Title:"+title);
-		System.out.println("Book Author:"+author);
-        this.joining.display();		
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", quantity=" + quantity + ", authorName=" + authorName + ", price=" + price + "]";
 	}
-
-	public int getYear() {
-		Date.getYear();
-		return 0;
+	@Override
+	public int compareTo(Book other) {
+		int diff = (int) (other.price - this.price);
+		return diff;
 	}
-
-
 	
+	
+
 }
