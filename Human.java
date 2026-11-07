@@ -1,21 +1,21 @@
-package clg.dkte;
+package com.sunbeam;
 
 public class Human {
-
-	
-	private int age;
+	private int age; 
+	private int weight; 
 	private int height;
-	private int weight;
-	
-	public Human(int age, int height, int weight)
-	{
+	public Human() {
+		// TODO Auto-generated constructor stub
+	}
+	public Human(int age, int weight, int height) {
 		this.age = age;
-		this.height = height;
 		this.weight = weight;
+		this.height = height;
+	} 
+	//getters / setters 
+	public void display( ) {
+		System.out.printf("Age : %d Weight : %d Height : %d\n",age,weight,height);
 	}
 	
-	public void display()
-	{
-		System.out.printf("Age: %d weight : %d height: %d\n", age, weight, weight );
-	}
+	
 }
