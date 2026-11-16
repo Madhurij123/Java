@@ -1,144 +1,77 @@
-package clg.dkte;
-
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Program1 {
 
 	public static void main(String[] args) {
 
+		//Set<Book> set = new HashSet<>();
+		Set<Book> set = new LinkedHashSet<>();
+		//Set<Book> set = new TreeSet<>();
 		
-		//Array of Refernece
-		Employee[] arr = new Employee[]{
-				 new Employee(4, "B", "Clerk", "Sales", 723.44),
-			        new Employee(8, "X", "Manager", "Accounts", 823.23),
-			        new Employee(2, "P", "Clerk", "Research", 234.23),
-			        new Employee(9, "N", "Manger", "Sales", 252.53),
-			        new Employee(5, "D", "Clerk", "Accounts", 923.23),
-			        new Employee(1, "Q", "Analyst", "Research", 826.23),
-			        new Employee(7, "H", "Clerk", "Research", 845.24),
-			        new Employee(6, "A", "Analyst", "Research", 832.23),
-			        new Employee(3, "G", "Analyst", "Sales", 952.44)
-		     };	
+		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
+		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
+		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
 		
-		System.out.println("Employee:");
-		for(Employee e: arr)
+		System.out.println("Set:");
+		for(Book b : set)
 		{
-			System.out.println(e);
+			System.out.println(b);
 		}
-		System.out.println();
-
 		
-		class EmployeeIdComparator implements Comparator<Employee>
+		class BookIdComparator implements Comparator<Book>
 		{
-
 			@Override
-			public int compare(Employee x, Employee y) {
-			  int diff = Integer.compare(x.getId(), y.getId());
-			  return diff;
-			}
-			
-		}
-		Arrays.sort(arr, new  EmployeeIdComparator());
-		System.out.println("After sorting Employee:");
-		for(Employee e: arr)
-		{
-			System.out.println(e);
-		}
-		System.out.println();
-
-		
-		//*Employees sort by name ---- Anonymous Inner class (empNameComparator)
-     Comparator<Employee> empID = new Comparator<Employee>()
-    		 {
-
-				@Override
-				public int compare(Employee x, Employee y) {
-				
-					int diff = x.getName().compareTo(y.getName());
-					return diff;
-				}
-    	 
-    		 };
-        Arrays.sort(arr, empID);
-		System.out.println("Anonymous Inner class:");
-		for(Employee e: arr)
-		{
-			System.out.println(e);
-		}
-		System.out.println();
-
-		
-		//Empolyees sort by Job : Anonymous Inner class Anonymous object 
-		
-		Arrays.sort(arr,new Comparator<Employee>()
-		 {
-
-			@Override
-			public int compare(Employee x, Employee y) {
-			
-				int diff = x.getDept().compareTo(y.getDept());
+			public int compare(Book x, Book y) {
+				int diff = Integer.compare(x.getId(), y.getId());
 				return diff;
-			}
-			});
-		
-		System.out.println("Anonymous Object:");
-		for(Employee e: arr)
-		{
-			System.out.println(e);
+			}	
 		}
-		System.out.println();
-
+		System.out.println("Set:");
+		for(Book b : set)
+		{
+			System.out.println(b);
+		}
 		
-		//   // lambda is short-hand implementation of the abstract method in the functional interface
-		    Arrays.sort(arr, (Employee x, Employee y) -> {
-			
-				int diff = -x.getDept().compareTo(y.getDept());
-				return diff;
-			});
-		    System.out.println("Anonymous Method:");
-			for(Employee e: arr)
-			{
-				System.out.println(e);
-			}
-			
-			//*Empolyees sort by name desc (type inference) 
-			 Arrays.sort(arr ,(x, y)-> {
-					
-					int diff = Double.compare(x.getSalary(), y.getSalary());
-					return diff;
-				});
-			    System.out.println("Anonymous Method:");
-				for(Employee e: arr)
-				{
-					System.out.println(e);
-				}
-				System.out.println();
 
-			//No need to of variable
-				 Arrays.sort(arr ,(x, y)-> {
-						
-					return -Double.compare(x.getSalary(), y.getSalary());
-					});
-				    System.out.println("Anonymous Method:");
-					for(Employee e: arr)
-					{
-						System.out.println(e);
-					}
-					
-			//Lambda Expression
-					 Arrays.sort(arr ,(x, y)-> -Double.compare(x.getSalary(), y.getSalary()));
-					 System.out.println("Lmabda Expression:");
-						for(Employee e: arr)
-						{
-							System.out.println(e);
-						}
-						System.out.println();
-
-	List<Employee> list = Arrays.asList(arr);
-	list.sort((x,y) -> Integer.compare(x.getId(),y.getId()));
-	list.forEach(e -> System.out.println(e));
 	}
-
 }
+	
+	/*public static void main(String[] args)
+	{
+		class BookIdComparator implements Comparator<Book>
+		{
+
+			@Override
+			public int compare(Book x, Book y) {
+				int diff = Integer.compare(x.getId(), y.getId());
+				return diff;
+			}	
+		}
+		//Collections.sort(set, new BookIdComparator());
+		Set<Book> set = new TreeSet<>(new BookIdComparator());
+		
+		set.add(new Book(4, "The Alchemist", "Novel", 493.23));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(5, "The Fountainhead", "Novel", 652.73));
+		set.add(new Book(2, "Atlas Shrugged", "Novel", 872.94));
+		set.add(new Book(6, "Harry Potter", "Novel", 423.68));
+		set.add(new Book(1, "The Archer", "Novel", 723.53));
+		set.add(new Book(3, "Lord of Rings", "Novel", 621.53));
+		
+		System.out.println("Set:");
+		for(Book b : set)
+		{
+			System.out.println(b);
+		}
+	}*/
+
+
