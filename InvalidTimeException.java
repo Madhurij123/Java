@@ -1,4 +1,4 @@
-package com.sunbeam;
+package clg.dkte1;
 
 public class InvalidTimeException extends Exception {
 	private String invalidField; 

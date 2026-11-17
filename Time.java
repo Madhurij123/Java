@@ -1,4 +1,4 @@
-package com.sunbeam;
+package clg.dkte1;
 
 public class Time {
 	private int hrs; 
