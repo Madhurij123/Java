@@ -1,14 +1,18 @@
-package com.app.fruits;
+package clg.dkte2;
 
-public class Mango extends Fruit {
-
-	public Mango(String name, String color, double weight, boolean isFresh) {
-		super(name, color, weight, isFresh);
-	}
+abstract public class Mango implements Fruit
+{
+	/*@Override
+public void print()
+{
+	System.out.println("Class Mango");
+}*/
 	
-	@Override
-	public String taste()
+}
+class Dkte extends Mango
+{
+	public void print()
 	{
-		return "Sweet";
+		System.out.println("Sub class of mango");
 	}
 }

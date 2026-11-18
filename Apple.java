@@ -1,14 +1,12 @@
-package com.app.fruits;
+package clg.dkte2;
 
-public class Apple extends Fruit {
-    
-	public Apple(String name, String color, double weight, boolean isFresh) {
-		super(name, color, weight, isFresh);
-	}
-
-	public String taste() {
-        return "Sweet & Sour";
-    }
-    
+public class Apple implements Fruit
+{
+	@Override
+public void print()
+{
+	System.out.println("Class Apple");
+}
+	
 	
 }
