@@ -1,60 +1,55 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Scanner;
 
 public class Program {
+	public static void delay(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
-		//writeMovies();
-		readMovies();
-	}
+		class PrintTable extends Thread {
+			private int num;
 
-	public static void readMovies()
-	{
-		List<Movie> list = new ArrayList<>();
-		try(FileInputStream in = new FileInputStream("Movies.db")) {
-			try(DataInputStream din = new DataInputStream(in)){
-				while(true) {
-					Movie m = new Movie(); 
-					m.setId(din.readInt());
-					m.setTitle(din.readUTF());
-					m.setRating(din.readDouble());
-					list.add(m); 
+			public PrintTable(int num) {
+				this.num = num;
+			}
+
+			@Override
+			public void run() {
+				for (int i = 1; i <= 10; i++) {
+					System.out.printf("%d * %d = %d\n", num, i, num * i);
+					delay(1000);
 				}
 			}
-		}catch(Exception e)
-		{
-			//e.printStackTrace();
+
 		}
-		System.out.println("Movies:");
-		list.forEach(e -> System.out.println(e));
+		PrintTable th1 = new PrintTable(2);
+		System.out.println("state : " + th1.getState());
+		th1.setPriority(1);
+		th1.start();
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ENTER ANY KEY");
+		sc.nextLine();
+		System.out.println("state : " + th1.getState());
+
+		try {
+			th1.join();// calling thread i.e. main will wait for completion given thread i.e. th1
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		th1.start();
+		
+		System.out.println("state : " + th1.getState());
+
 	}
-		public static void writeMovies() {
-			List<Movie> list = new ArrayList<>();
-			list.add(new Movie(1, "Star Wars", 7.5));
-			list.add(new Movie(2, "Godfather", 8.0));
-			list.add(new Movie(3, "Hidden Figures", 7.0));
-			list.add(new Movie(4, "Bruce Almighty", 6.5));
-			list.add(new Movie(5, "Forest Gump", 8.5));
 
-			try (FileOutputStream fout = new FileOutputStream("Movies.db")) {
-				try (DataOutputStream dout = new DataOutputStream(fout)) {
-					for (Movie m : list) {
-						dout.writeInt(m.getId());
-						dout.writeUTF(m.getTitle());
-						dout.writeDouble(m.getRating());
-					}
-				} // dout.close();
-				System.out.println("File saved..");
-			} // fout.close();
-			catch (Exception e) {
-				//e.printStackTrace();
-			}
-
-		}
 }
-	
