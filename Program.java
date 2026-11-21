@@ -1,21 +1,17 @@
+package sunbeam.geometry;
 
-public class Program {
+import sunbeam.geometry.dim2.Circle;
+import sunbeam.geometry.dim3.*;
 
-	public static void main(String[] args) {
-		//Variable declaration 
-		double length = 10.0 , breadth = 2.0; 
-		double area; 
-		
-		//area calculation 
-		area = length * breadth; 
-		
-		//System.out.println("Area : " + area);
-		//System.out.printf("Area : %.2f",area);
-		//System.out.println("Length : " + length);
-		//System.out.println("Breadth : " + breadth);
-		//System.out.println("Area : " + area);
-		
-		System.out.println("Length : " + length + " , Breadth : " +  breadth + " , Area : "  + area);
-	}
+class Program {
+   public static void main(String[] args) {
+       Circle c = new Circle(7);
+       System.out.println("Circle area: " + c.calcArea());
+   
+       Cylinder cyl = new Cylinder(7, 5);
+       System.out.println("Cylinder volume: " + cyl.calcVolume());
 
+       Box b = new Box(7, 5, 3);
+       System.out.println("Box volume: " + b.calcVolume());
+   }
 }
