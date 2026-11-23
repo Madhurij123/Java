@@ -1,85 +1,85 @@
-import java.util.Objects;
+package clg.dkte;
+import java.util.*;
+public class Book{
 
-public class Book implements Comparable<Book>{
-
-	private int id;
-	private String name;
-	private String subject;
-	private double price;
+	private int bookId;
+	private String title;
+	private String author;
+	private Date joining;  //Association
 	
 	public Book()
 	{
-		
+		System.out.println("public Book()");
+		joining = new Date();
+
 	}
 
-	public Book(int id, String name, String subject, double price) {
+	public Book(int bookId, String title, String author, Date joining) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.subject = subject;
-		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
+		this.bookId = bookId;
+		this.title = title;
+		this.author = author;
+		this.joining = joining;
 	}
 	
-	@Override
-    public int hashCode()
-    {
-		return Objects.hash(id);
-    }
+	
+	public int getBookId() {
+		return bookId;
+	}
 
-	@Override
-	public boolean equals(Object obj)
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public Date getJoining() {
+		return joining;
+	}
+
+	public void setJoining(Date joining) {
+		this.joining = joining;
+	}
+
+	public void acceptRecord()
 	{
-		if(this == obj)
-			return true;
-		if(obj == null)
-			return false;
-		if(!(obj instanceof Book))
-			return true;
-		Book other = (Book) obj;
-		return this.id == other.id;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a Book id:");
+		bookId = sc.nextInt();
+		System.out.println("Enter a titile:");
+		title = sc.next();
+		
+		System.out.println("Enter a author:");
+		author = sc.next();
+		this.joining.acceptDate();
 	}
-	
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", subject=" + subject + ", price=" + price + "]";
+	public void display()
+	{
+		System.out.println("Book Id:"+bookId);
+		System.out.println("Book Title:"+title);
+		System.out.println("Book Author:"+author);
+        this.joining.display();		
 	}
 
-	@Override
-	public int compareTo(Book other) {
-		int diff = this.id - other.id;
-		return diff;
+	public int getYear() {
+		Date.getYear();
+		return 0;
 	}
+
+
 	
 }
